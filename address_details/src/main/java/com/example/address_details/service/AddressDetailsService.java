@@ -34,7 +34,13 @@ public class AddressDetailsService {
 	public AddressDetailsEntity updateAddressDetailsEntity(AddressDetailsEntity AddressDetailsEntity, String partnerKey) throws AddressDetailsNotFoundException {
 		Optional<AddressDetailsEntity> optionalAddressDetailsEntity = AddressDetailsRepository.findByPartnerKey(partnerKey);
 		if(!optionalAddressDetailsEntity.isEmpty()) {
-			return AddressDetailsRepository.save(AddressDetailsEntity);
+			AddressDetailsEntity existingEntity = optionalAddressDetailsEntity.get();
+			existingEntity.setPartnerKey(AddressDetailsEntity.getPartnerKey());
+			existingEntity.setHouseNumber(AddressDetailsEntity.getHouseNumber());
+			existingEntity.setStreet(AddressDetailsEntity.getStreet());
+			existingEntity.setPostalCode(AddressDetailsEntity.getPostalCode());
+			existingEntity.setTown(AddressDetailsEntity.getTown());
+			return AddressDetailsRepository.save(existingEntity);
 		}else {
 			throw new AddressDetailsNotFoundException("AddressDetailsEntity not found with the id...");
 		}
