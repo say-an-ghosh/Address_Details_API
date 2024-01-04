@@ -2,8 +2,7 @@ package com.example.address_details.entity;
 
 import org.springframework.validation.annotation.Validated;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@ApiModel(description = "This model is to create a Address Details")
+@Schema(description = "This model is to create a Address Details")
 @Entity(name="AddressDetailsEntity")
 @Table(name="address_detailS")
 @Validated
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressDetailsEntity {
 		
-	  @ApiModelProperty(notes = "Auto generated unique id", required = true)
+	  @Schema
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.AUTO)	
 	  @Column(name = "ID")
